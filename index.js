@@ -1,6 +1,7 @@
 //Product Management using express router
 const express = require('express')
 const app = express()
+const router=express.Router();
 const port = 5000
 app.use(express.json());
 

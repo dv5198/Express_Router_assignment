@@ -1,6 +1,6 @@
 //Product Management using express router
 const express = require('express')
-const product_details = require('./product_details');
+const product_details = require('./product_data');
 const app = express()
 const port = 5000
 //Read Data
@@ -9,16 +9,18 @@ app.get('/',(req,res) => {
 });
 //Inserts data
 app.post('/product_insert',(req,res) => { 
-    const prd={
-        id=prd.length+1,
-        ptitle:req.body.product_title,
-        price:req.body.price,
-        category:req.body.category,
-        seller_id:req.body.seller_id
-    }
-    product_data.push(prd)
-    res.json(prd)
+   const product=({
+       id:req.params.id,
+       title:req.body.title,
+       price:req.body.price,
+       category:req.params.category,
+       seller_id:req.params.seller_id
+   });
+   product.save((err,data)=>{
+    res.status(200).json({code:200,message:'Product Record Added Successfully',addcompany:data});
+   })
 });
+
 //Update data
 app.put('/products_update:id',(req,res)=>{
     let pid=req.params.id;

@@ -9,13 +9,14 @@ app.get('/',(req,res) => {
 });
 //Inserts data
 app.post('/seller_insert',(req,res) => { 
-    const slr={
-        id=slr.length+1,
+    const slr=({
+        id:req.params.id,
         sname:req.body.name,
         p_id:req.body.product_id,
-    }
-    seller_data.push(cmp)
-    res.json(slr)
+    });
+    product.save((err,data)=>{
+     res.status(200).json({code:200,message:'Seller Details  Record Added Successfully',addcompany:data});
+    })
 });
 //Update data
 app.put('/seller_update:id',(req,res)=>{

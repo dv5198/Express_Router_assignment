@@ -36,4 +36,4 @@ const prod=[{
     "seller id": [4,3]
   }]
 
-  module.exports = product
+  module.exports = prod

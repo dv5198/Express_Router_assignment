@@ -9,13 +9,15 @@ app.get('/',(req,res) => {
 });
 //Inserts data
 app.post('/company_insert',(req,res) => { 
-    const cmp={
-        id=cmp.length+1,
-        cname:req.body.name,
-        p_id:req.body.product_id,
-    }
-    company_data.push(cmp)
-    res.json(cmp)
+    
+    const cmp=new company({
+        id:req.params.id,
+        name:req.params.name,
+        product_id:req.params.product_id
+    })
+    cmp.save((err,data)=>{
+        res.status(200).json({code:200,message:'Company Record Added Successfully',addcompany:data});
+    });
 });
 //Update data
 app.put('/company_update:id',(req,res)=>{
